@@ -4,13 +4,12 @@ const ytdl = require('ytdl-core');
 module.exports = {
 	name: 'play',
 	description: 'Riproduci',
-	usage: '[command name]',
+	usage: '[Url]',
 	args: true,
 	cooldown: 2,
-	async execute(message, args) {
+	async execute(message, args, client) {
 		const { channel } = message.member.voice;
-		const { channelid } = message.member.voice.id;
-		if (!channel) if (!(channelid == "711540596292059147")) return message.channel.send('Devi essere nel canale <#711540596292059147> plebeo');
+		if (!channel) return message.channel.send('Devi essere in un canale vocale');
 		
 		const permissions = channel.permissionsFor(message.client.user);
 		if (!permissions.has('CONNECT')) return message.channel.send('Bruh non posso connettermi al sees');

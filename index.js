@@ -1,70 +1,105 @@
-require('dotenv').config();
-const { readdirSync } = require('fs');
-const { join } = require('path');
-const MusicClient = require('./struct/Client');
-const { Collection } = require('discord.js');
+/* eslint-disable no-empty */
+const { CommandoClient } = require('./discord.js-commando/src');
+const { Structures } = require('discord.js');
+const path = require('path');
+const { prefix, token, discord_owner_id } = require('./config.json');
 const Cron = require("cron");
 const randomPuppy = require('random-puppy');
-const client = new MusicClient({ token: process.env.DISCORD_TOKEN, prefix: process.env.DISCORD_PREFIX });
 
-//Await for input
-const commandFiles = readdirSync(join(__dirname, 'commands')).filter(file => file.endsWith('.js'));
-for (const file of commandFiles) {
-	const command = require(join(__dirname, 'commands', `${file}`));
-	client.commands.set(command.name, command);
-}
+Structures.extend('Guild', function(Guild) {
+  class MusicGuild extends Guild {
+    constructor(client, data) {
+      super(client, data);
+      this.musicData = {
+        queue: [],
+        isPlaying: false,
+        nowPlaying: null,
+        songDispatcher: null,
+        volume: 1
+      };
+      this.triviaData = {
+        isTriviaRunning: false,
+        wasTriviaEndCalled: false,
+        triviaQueue: [],
+        triviaScore: new Map()
+      };
+    }
+  }
+  return MusicGuild;
+});
 
-client.once('ready', () => console.log('READY!'));
+const client = new CommandoClient({
+  commandPrefix: prefix,
+  owner: discord_owner_id // value comes from config.json
+});
+
+client.registry
+  .registerDefaultTypes()
+  .registerGroups([
+    ['music', 'Musica'],
+    ['gifs', 'Gif'],
+    ['other', 'Altro'],
+    ['guild', 'Comandi del server']
+  ])
+  .registerDefaultGroups()
+  .registerDefaultCommands({
+    eval: false,
+    prefix: false,
+    commandState: false
+  })
+  .registerCommandsIn(path.join(__dirname, 'commands'));
+
+client.once('ready', () => {
+  console.log('Ready!');
+  client.user.setActivity(`onlyfans`, {
+    type: 'WATCHING',
+    url: 'https://youtu.be/pnHg892Xwpk'
+  });
+});
+
 client.on('message', message => {
-	if(message.channel.id != "712644431622438922"){
-		if (!message.content.startsWith(client.config.prefix) || message.author.bot) return;
-		const args = message.content.slice(client.config.prefix.length).split(/ +/);
-		const commandName = args.shift().toLowerCase();
-		const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
-		if (!command) return;
-		if (command.guildOnly && message.channel.type !== 'text') return message.reply('I can\'t execute that command inside DMs!');
-		if (command.args && !args.length) {
-			let reply = `Dimmi piu robbe, ${message.author}!`;
-			if (command.usage) reply += `\nL'uso corretto sarebbe: \`${client.config.prefix}${command.name} ${command.usage}\``;
-			return message.channel.send(reply);
-		}
-		if (!client.cooldowns.has(command.name)) {
-		client.cooldowns.set(command.name, new Collection());
-		}
-		const now = Date.now();
-		const timestamps = client.cooldowns.get(command.name);
-		const cooldownAmount = (command.cooldown || 3) * 1000;
-		if (timestamps.has(message.author.id)) {
-			const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
-			if (now < expirationTime) {
-				const timeLeft = (expirationTime - now) / 1000;
-				return message.reply(`Momento momento momento. Aspetta ${timeLeft.toFixed(1)} secondi prima di eseguire \`${command.name}\``);
-			}
-		}
-		timestamps.set(message.author.id, now);
-		setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-
-		try {
-			command.execute(message, args, client);
-		}
-		catch (error) {
-		console.error(error);
-		message.reply('there was an error trying to execute that command!');
-		}
-	}
-	else{
+	if(message.channel.id == "712644431622438922"){
 		if(message.member.id != "711871380622409730"){
 			message.channel.send("Bruh");
 			message.delete();
 		}
-	}
+  }
+  else{
+    if(message.content == "Malario gay" || message.content == "malario gay"){
+      message.channel.send("No tu");
+    }
+  }
 });
 
-//Daily Tasks
+client.on('voiceStateUpdate', async (___, newState) => {
+  if (
+    newState.member.user.bot &&
+    !newState.channelID &&
+    newState.guild.musicData.songDispatcher &&
+    newState.member.user.id == client.user.id
+  ) {
+    newState.guild.musicData.queue.length = 0;
+    newState.guild.musicData.songDispatcher.end();
+    return;
+  }
+  if (
+    newState.member.user.bot &&
+    newState.channelID &&
+    newState.member.user.id == client.user.id &&
+    !newState.selfDeaf
+  ) {
+    newState.setSelfDeaf(true);
+  }
+});
+
+client.on('guildMemberAdd', member => {
+  const channel = member.guild.channels.cache.find(ch => ch.name === 'spam-nuovi-arrivati'); // change this to the channel name you want to send the greeting to
+  if (!channel) return;
+  channel.send(`Welcome ${member}!`);
+});
 
 function mementos() {
 	let reddit = [
-		"ShitPostCrusaders",
 		"memes"
 	]
 
@@ -86,4 +121,4 @@ function mementos() {
 let dailymeme = new Cron.CronJob('00 00 10 * * *', mementos);
 dailymeme.start();
 
-client.login(client.config.token);
+client.login(token);

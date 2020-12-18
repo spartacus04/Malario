@@ -1,8 +1,0 @@
-heroku maintenance:on
-heroku ps:scale worker=0
-Aggiorna l'app
-git add .
-git commit -am "nome"
-git push heroku master
-heroku ps:scale worker=1
-heroku maintenance:off

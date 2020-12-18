@@ -14,7 +14,7 @@ module.exports = class RandomNumberCommand extends Command {
   run(message) {
     message.channel.send({
         files: [{
-            attachment: "https://www.dropbox.com/s/kj2felicizvebkg/WhatsApp%20Image%202020-09-03%20at%2010.58.01.jpeg?dl=1",
+            attachment: "https://www.dropbox.com/s/5nxatxw1zl0w6cv/bababui.jpg?dl=1",
             name: 'diego.png'
         }]
     })

@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const { newsAPI } = require('../../config.json');
+const newsAPI = process.env.newsAPI;
 const { Command } = require('../../discord.js-commando/src');
 const fetch = require('node-fetch');
 

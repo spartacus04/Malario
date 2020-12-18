@@ -2,7 +2,6 @@
 const { CommandoClient } = require('./discord.js-commando/src');
 const { Structures } = require('discord.js');
 const path = require('path');
-const { prefix, token, discord_owner_id } = require('./config.json');
 const Cron = require("cron");
 const randomPuppy = require('random-puppy');
 
@@ -29,8 +28,8 @@ Structures.extend('Guild', function(Guild) {
 });
 
 const client = new CommandoClient({
-  commandPrefix: prefix,
-  owner: discord_owner_id // value comes from config.json
+  commandPrefix: "m.",
+  owner: "465954478852669460" // value comes from config.json
 });
 
 client.registry
@@ -121,4 +120,4 @@ function mementos() {
 let dailymeme = new Cron.CronJob('00 00 10 * * *', mementos);
 dailymeme.start();
 
-client.login(token);
+client.login(process.env.token);

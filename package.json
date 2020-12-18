@@ -12,16 +12,19 @@
   "license": "ISC",
   "dependencies": {
     "@discordjs/opus": "^0.3.3",
+    "better-random-puppy": "^1.0.1",
     "cheerio": "^1.0.0-rc.3",
     "common-tags": "^1.8.0",
     "cron": "^1.8.2",
-    "discord.js": "github:discordjs/discord.js",
+    "discord.js": "^12.5.1",
+    "ffmpeg": "0.0.4",
     "ffmpeg-static": "^2.7.0",
+    "fluent-ffmpeg": "^2.1.2",
     "iso-639-1": "^2.1.4",
     "random-puppy": "^1.1.0",
     "require-all": "^3.0.0",
     "simple-youtube-api": "^5.2.1",
-    "ytdl-core": "^3.4.2"
+    "ytdl-core": "^4.2.0"
   },
   "devDependencies": {
     "@getify/eslint-plugin-proper-arrows": "^8.0.1",

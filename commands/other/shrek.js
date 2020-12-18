@@ -1,29 +1,23 @@
-const fetch = require('node-fetch');
-const { tenorAPI } = require('../../config.json');
 const { Command } = require('../../discord.js-commando/src');
 
-module.exports = class CatCommand extends Command {
+module.exports = class RandomNumberCommand extends Command {
   constructor(client) {
     super(client, {
       name: 'shrek',
-      aliases: ['shrekk', 'shrekkk'],
-      group: 'other',
+      aliases: ['shrek', 'shrekkk'],
       memberName: 'shrek',
-      description: 'shrek',
-      throttling: {
-        usages: 2,
-        duration: 10
-      }
+      group: 'other',
+      description: 'è ovvio dai'
     });
   }
 
   run(message) {
-    fetch(`https://api.tenor.com/v1/random?key=${tenorAPI}&q=cat&limit=1`)
-      .then(res => res.json())
-      .then(json => message.say(json.results[0].url))
-      .catch(err => {
-        message.say('Bruh non ho trovato un gatto');
-        return console.error(err);
-      });
+    
+    let script = "[Shrek] C'era una volta una Ceres c’è- Si, *risatina* certo, aspetta e spera. EeE- arepse e sper epsepse-\n[Smash Mouth] SooS *interferenze protoniche* Iwa iwa iwa- Succhiami la miiinchia vacca Dio cane.\n[Shrek] Vedete gli Orchi, fanno pOrchi, fanno cose peggiori. Si fanno un abito con le vostre palle appena scopate, vi affettano il feto, si sBorrano negli occhi *intermittenza autistica*. *sussurrando* A questo punto, dovreste scAppunto; a questo punto… stocazzo. *la gente scappa* Sii!\n[Ciuchino] Mi hai quasi bruciato i peli sul cazzo, come quella volta qu͞ando͞ s̴i è̢ r͜ott͘o̸ ͡il ͟cu͏ló e ͘ḑo̶po͞ l͏o ͝to͏c͞c͠o̧ ͘so̢t͜t̶o (?̴?)́ e poi poi ho mangiato delle cAcche marce, quel giorno il mio sedere scOpava cazzi a tutto spiano-\n[Shrek] Perché conticui a secui- *interferenze protoniche*\n[Ciuchino] Posso stare con te? \n[Shrek] Uh, cosa? … Cosa? \n[Ciuchino] Posso?\n[Shrek] Natural- Natural- mente!\n[Ciuchino] Davvo?\n[Shrek] No.\n[Ciuchino] TI PREGO, non voglio tornare lì, non sai cos’è essere considerati Mostro! \n[Mostro] *parte Ogni Maledetto Giorno di Mostro* Ogni maledetto giorno! (x5), *distorto* oGNi mALeDettO giOrnO-\n[Lord Farquaad] Vai, vai vai a fan-cu-lo, zon-pan di zenzero le palle tu mi succhierai!\n[Omino di Pan di Zenzero] Sei Mostro!\n[Mostro] *parte Ogni Maledetto Giorno di Mostro* Ogni maledetto giorno! *earrape* Ogni maledetto giorno!\n[Lord Farquaad] Ho cercato di essere giusto con voi creatucre, ora che la mia pac-\n[Shrek] Conticui a secui- \n[Lord Farquaad] C- Chi li nasconde i Chili di cocaina?\n[Omino di Pan di Zenzero] D’accordo; Te lo dirò. Tu conosci… l'Uomo Focaccina? \n[Lord Farquaad] L’Uomo Checca? *Guardia entra*\n[Lord Farquaad] *gasp*\n[Guardia] Mio signore! L’abbiamo trovato. L'uomo focaccina? Portatelo qui! IiiI!\n[Shrek] Quello deve essere il castello di Lord Farquaad.\n[Ciuchino] Aha, una cosuccia.\n[Shrek] *lentamente* Credi che serva a compensare qualcos'altro? *ride* *interferenze protoniche*";
+    let script2 = "[Teatrino del Coro di Marionette] Benvenuti a DuloC.\n[Ciuchino] Caaaspita… DAII, RIFACCIAMOCI!\n[Shrek] No, no, nonono! *lentamente* Nooo.\n[Ciuchino] *Canticchia*\n[Shrek] Ti avverto che stai per ricevere una bella Inculata.\n[Ciuchino] Scusa tanto.\n[Shrek] Ehi ragioniamo! ParliAmo! Non poopn- Non possiamo sistemare tutto con un'orgia?\n[Ciuchino] Si?! \n[Shrek] D'accordo allora, si comincia! *parte la musica* *Shrek fa rumori molesti (x5 + 1 lentamente)*\n[Ciuchino] Si. *rumori di scopata protonica* Ehi, fallo a me, FALLO A ME!\n[Cavaliere] *in lontananza* EeeE-\n[Folla] *ovazione*\n[Shrek] Ohh siii!\n[Folla] *ovazione* Evviva! Ha vinto il mostro!\n[Shrek] *ruggito (x2)* Grazie! Grazie infinite! Sarò qui fino a giovedì, per gli autografi!\n[Shrek] So io cosa. Magari avrei potuto scOpare un intero villaggio, mettere le teste su PAolo Villaggio.\n[Paolo Villaggio] *in modo autorevole* No. … *interferenze protoniche multiple con epilessia*\n[Shrek] Prendere un coltello, squartargli il culo e bere la loro CacCa. Per tua informazione gli orchi hanno dentro più cocco di quanto uno creda. Cazzi! Le cipolle, hanno i cazzi, gli orchi hanno i cazzi, le cipolle hanno i cazzi. Capito? Tutti e due abbiamo i cazzi. *sbuffa*\n[Ciuchino] AaaA- *interferenze protoniche con epilessia*\n[Shrek] No! O Toodles Dio bestia da soma in miniatOma, inminianomamossadaisestia da soma in miniatura, gli Orchi sono come le palle, fine della storia! *earrape* Baci baci, ci vediamo~. \n[Shrek] Affronteremo questa cosa insieme, un passettino minuscolo al- *rallentando* passettino minuscolo al- *rallentando* passettino minuscolo al- *interferenze protoniche con epilessia*\n[Shrek] Ciuchino, due cose, chiaro? *elencando* Le, cipolle. *si rifà* Due cose, chiaro? Perché, conticui a secui-\n[Teatrino del Coro di Marionette] C C C- *interferenze protoniche con epilessia*\n[Shrek] *urla* *intona il Main Theme dei Pirati dei Caraibi* *interferenze protoniche con epilessia*"
+    let script3  = "[Fiona] Ce l'avete fatta! Mi avete fatta! Siate straordinario, siete Asso di DenariO, siete merDoso, siete- *interferenze protoniche* Il vostro cazzo è grande e il vostro scrOtO è puro; come farete a baciarmi? \n[Shrek] Cosa? *earrape* Cosa? \n[Ciuchino] Allora, ecco un’altra domanda. Tu sconquinferi una femmina ma lei non fi piace in quel mofo. Come la smonfi con fentileffa senfa ferire aff- \n[Ciuchino] Aaah, questa è come la cosa delle cipolle, vero? \n[Shrek] No, questa è come la cosa “molla e succhiami il piripillo!”\n[Shrek] Meglio fuori che dentro dico io, orco D**.\n[Ciuchino] *urla* *intona Bene Ma Non Benissimo di Shade*\n[Shade] Bene, bene, bene, bene, ma non benissimo. Bene, bene, bene, bene, ma non benissimo. Be- *interferenze protoniche*\n[Shrek] Te l'avevo detto vero? Tu a casa Tua non ci scopi con me, iOi, EmmE, io mi sego da solo, la mia minchia! NessunIo! Porco Dio! *earrape* Nessun altro hai capito? Hai ragione Ciuchino, io ti perdono. *urlando* Di avermi succhiato le palle! *sbatte la porta musicalmente*\n[Ciuchino] Sono un ciuco, sull'orlo di una crisi di neKo! \n[Shrek] Io ti amo. \n[Fiona] Davvero? \n[Shrek] Naturalmente! \n[Ciuchino] Davvero?\n[Shrek] *earrape* No. \n[Ciuchino] Lo aspettavano da tanto questo lieto fine! *parte I’m a Believer di Smash Mouth* \n[Shrek] Certo, aspetta e spera. *interferenze protoniche con epilessia*\n[Shrek] E vissero per sempre orrendi e contenti. Fi-\n[Teatrino del Coro di Marionette] C C CcC *interferenze protoniche multiple con epilessia*\n";
+    message.say(script);
+    message.say(script2);
+    return message.say(script3);
   }
 };

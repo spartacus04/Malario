@@ -3,6 +3,3 @@ node_modules/
 package-lock.json
 node_modules/
 .vscode/
-config.json
-.slinrc.json
-discord.js-commando/

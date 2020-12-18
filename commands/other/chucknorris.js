@@ -18,7 +18,6 @@ module.exports = class ChuckNorrisCommand extends Command {
   }
 
   run(message) {
-    // thanks to https://api.chucknorris.io
     fetch('https://api.chucknorris.io/jokes/random')
       .then(res => res.json())
       .then(json => {

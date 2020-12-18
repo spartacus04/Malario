@@ -2,7 +2,7 @@
 ![Malario](https://i.pinimg.com/originals/08/cf/f4/08cff4f168d979d2f6cd676f7cc387ed.jpg)
 
 
-Malario è il discord bot del prosciutthanos, può fare molte cose tra le quali
+Malario è il primo bot del server discord del prosciutthanos, può fare molte cose tra le quali
 
   - Inviare dei meme da reddit
   - Riprodurre musica da Youtube

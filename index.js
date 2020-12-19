@@ -50,7 +50,7 @@ client.registry
 
 client.once('ready', () => {
   console.log('Ready!');
-  client.user.setActivity(`onlyfans`, {
+  client.user.setActivity(`Onlyfans`, {
     type: 'WATCHING',
     url: 'https://youtu.be/pnHg892Xwpk'
   });

@@ -13,7 +13,7 @@ module.exports = class WhoMadeMeCommand extends Command {
 
   run(message) {
     message.say(
-      'Mio padre @spartacus04#9422 mi ha creato con :heart: Altre info a https://spartacus04.github.io/Malario/'
+      'Mio padre @spartacus04#9422 mi ha creato con :heart: Altre info a https://github.com/spartacus04/Malario'
     );
   }
 };

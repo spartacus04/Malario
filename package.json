@@ -18,7 +18,7 @@
     "cron": "^1.8.2",
     "discord.js": "^12.5.1",
     "ffmpeg": "0.0.4",
-    "ffmpeg-static": "^2.7.0",
+    "ffmpeg-static": "^4.2.7",
     "fluent-ffmpeg": "^2.1.2",
     "iso-639-1": "^2.1.4",
     "random-puppy": "^1.1.0",
@@ -27,12 +27,12 @@
     "ytdl-core": "^4.2.1"
   },
   "devDependencies": {
-    "@getify/eslint-plugin-proper-arrows": "^8.0.1",
+    "@getify/eslint-plugin-proper-arrows": "^10.0.0",
     "@getify/eslint-plugin-proper-ternary": "^3.0.1",
     "babel-eslint": "^10.1.0",
-    "eslint": "^5.16.0",
+    "eslint": "^7.16.0",
     "nodemon": "^2.0.6",
-    "prettier": "^1.19.1"
+    "prettier": "^2.2.1"
   },
   "engines": {
     "node": "12.14.1",

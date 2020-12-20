@@ -24,7 +24,7 @@
     "random-puppy": "^1.1.0",
     "require-all": "^3.0.0",
     "simple-youtube-api": "^5.2.1",
-    "ytdl-core": "^4.2.0"
+    "ytdl-core": "^4.2.1"
   },
   "devDependencies": {
     "@getify/eslint-plugin-proper-arrows": "^8.0.1",

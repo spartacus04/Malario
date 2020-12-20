@@ -4,9 +4,9 @@ const { Command } = require('../../discord.js-commando/src');
 module.exports = class RandomNumberCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'rickroll',
-      aliases: ['rickroll', 'shrekk'],
-      memberName: 'rickroll',
+      name: 'dorime',
+      aliases: ['dorime'],
+      memberName: 'dorime',
       group: 'other',
       description: 'è ovvio dai'
     });
@@ -17,7 +17,7 @@ module.exports = class RandomNumberCommand extends Command {
     try{
       const play = require("../music/play");
       const playcommand = new play(message.client);
-      playcommand.run(message, { query : "https://youtu.be/dQw4w9WgXcQ"} );
+      playcommand.run(message, { query : "https://youtu.be/6xUnSVTh8fI"} );
     }
     catch(e){
       console.error(e);

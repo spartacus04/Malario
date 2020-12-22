@@ -19,6 +19,9 @@ module.exports = class SayCommand extends Command {
   }
 
   run(message, { text }) {
+    if(text.toLowerCase() == "malario gay"){
+      return message.say("eboluigi lesbico")
+    }
     return message.say(text);
   }
 };

@@ -1,6 +1,6 @@
 /* eslint-disable no-empty */
 const { CommandoClient } = require('./discord.js-commando/src');
-const { Structures } = require('discord.js');
+const { Structures, Message } = require('discord.js');
 const path = require('path');
 const Cron = require("cron");
 const randomPuppy = require('random-puppy');
@@ -64,7 +64,7 @@ client.on('message', message => {
 		}
   }
   else{
-    if(message.content == "Malario gay" || message.content == "malario gay"){
+    if(message.content.toLowerCase() == "malario gay"){
       message.channel.send("No tu");
     }
   }

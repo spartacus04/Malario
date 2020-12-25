@@ -22,6 +22,9 @@ module.exports = class SayCommand extends Command {
     if(text.toLowerCase() == "malario gay"){
       return message.say("eboluigi lesbico")
     }
+    else if(text.toLowerCase() == "esteban gay"){
+      return message.say("non posso dire altro se non concordare");
+    }
     return message.say(text);
   }
 };

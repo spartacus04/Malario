@@ -25,6 +25,10 @@ module.exports = class SayCommand extends Command {
     else if(text.toLowerCase() == "esteban gay"){
       return message.say("non posso dire altro se non concordare");
     }
+    else if(text.toLowerCase().startsWith("/tts ")){
+      let bababui = text.replace("/tts ", "");
+      return message.channel.send(bababui, { tts: true });
+    }
     return message.say(text);
   }
 };

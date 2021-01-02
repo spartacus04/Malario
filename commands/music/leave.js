@@ -4,7 +4,7 @@ module.exports = class LeaveCommand extends Command {
   constructor(client) {
     super(client, {
       name: 'leave',
-      aliases: ['end', 'stop'],
+      aliases: ['end', 'stop', 'zittatroiaccia', 'zitta-troiaccia'],
       group: 'music',
       memberName: 'leave',
       guildOnly: true,

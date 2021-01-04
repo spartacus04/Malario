@@ -27,7 +27,7 @@ module.exports = class SayCommand extends Command {
     }
     else if(text.toLowerCase().startsWith("/tts ")){
       let bababui = text.replace("/tts ", "");
-      return message.channel.send(bababui, { tts: true });
+      return message.channel.send(bababui.replace("\n", " "), { tts: true });
     }
     return message.say(text);
   }

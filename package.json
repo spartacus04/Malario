@@ -1,14 +1,13 @@
 {
-  "name": "master-bot",
+  "name": "malario",
   "version": "1.0.0",
-  "description": "a discord music bot with guild , gifs and misc commands",
+  "description": "Un bot autistico",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
-    "pretest": "eslint --ignore-path .gitignore .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "node test.js"
   },
-  "author": "Nir Gal",
+  "author": "Andrea Bonari",
   "license": "ISC",
   "dependencies": {
     "@discordjs/opus": "^0.3.3",

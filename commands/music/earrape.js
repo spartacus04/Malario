@@ -1,5 +1,4 @@
 const { Command } = require('../../discord.js-commando/src');
-const Cron = require("cron");
 
 
 module.exports = class LeaveCommand extends Command {
@@ -16,6 +15,9 @@ module.exports = class LeaveCommand extends Command {
 
   run(message) {
     try{
+        const voiceChannel = message.member.voice.channel;
+        if (!voiceChannel) return message.reply('Devi essere in un canale plebeo');
+        
         const volume = require("./volume");
         const volumecommand = new volume(message.client);
         volumecommand.run(message, { wantedVolume : 69420} );

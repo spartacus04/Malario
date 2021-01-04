@@ -19,7 +19,7 @@ module.exports = class SayCommand extends Command {
   }
 
   run(message, { text }) {
-    let bababui = message;
+    let bababui = text;
     if(text.toLowerCase() == "malario gay"){
       bababui = "eboluigi lesbico";
     }

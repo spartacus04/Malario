@@ -19,16 +19,19 @@ module.exports = class SayCommand extends Command {
   }
 
   run(message, { text }) {
+    let bababui = message;
     if(text.toLowerCase() == "malario gay"){
-      return message.say("eboluigi lesbico")
+      bababui = "eboluigi lesbico";
     }
     else if(text.toLowerCase() == "esteban gay"){
-      return message.say("non posso dire altro se non concordare");
+      bababui = "non posso dire altro se non concordare";
     }
-    else if(text.toLowerCase().startsWith("/tts ")){
-      let bababui = text.replace("/tts ", "");
+    if(text.toLowerCase().startsWith("/tts ")){
+      bababui = text.replace("/tts ", "");
       return message.channel.send(bababui.replace("\n", " "), { tts: true });
     }
-    return message.say(text);
+    else{
+      return message.say(bababui);
+    }
   }
 };

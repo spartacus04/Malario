@@ -17,7 +17,19 @@ module.exports = class LeaveCommand extends Command {
     try{
         const voiceChannel = message.member.voice.channel;
         if (!voiceChannel) return message.reply('Devi essere in un canale plebeo');
-        
+
+        if (
+            typeof message.guild.musicData.songDispatcher == 'undefined' ||
+            message.guild.musicData.songDispatcher == null
+        ) {
+            return message.reply('Bruh non stai riproducendo niente');
+        } else if (voiceChannel.id !== message.guild.me.voice.channel.id) {
+            message.reply(
+              `Devi essere nel mio stesso canale plebeo`
+            );
+            return;
+        }
+
         const volume = require("./volume");
         const volumecommand = new volume(message.client);
         volumecommand.run(message, { wantedVolume : 69420} );

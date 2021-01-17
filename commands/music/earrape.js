@@ -29,11 +29,13 @@ module.exports = class LeaveCommand extends Command {
             );
             return;
         }
+        
 
+        const previousvolume = message.guild.musicData.volume * 2;
         const volume = require("./volume");
         const volumecommand = new volume(message.client);
         volumecommand.run(message, { wantedVolume : 69420} );
-        setTimeout(function(){ volumecommand.run(message, { wantedVolume : 1} ); }, 3000);
+        setTimeout(function(){ volumecommand.run(message, { wantedVolume : previousvolume} ); }, 3000);
       }
       catch(e){
         console.error(e);

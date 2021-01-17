@@ -99,7 +99,8 @@ client.on('guildMemberAdd', member => {
 
 function mementos() {
 	let reddit = [
-		"memes"
+    "memes",
+    "dankmemes"
 	]
 
 	let channel = client.channels.cache.get(`711647597411958827`);

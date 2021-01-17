@@ -15,7 +15,8 @@ module.exports = class RandomNumberCommand extends Command {
   run(message) {
     let reddit = [
         "ShitPostCrusaders",
-        "memes"
+        "memes",
+        "dankmemes"
     ]
 
     let subreddit = reddit[Math.floor(Math.random() * reddit.length)];

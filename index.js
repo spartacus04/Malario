@@ -91,6 +91,16 @@ client.on('voiceStateUpdate', async (___, newState) => {
   }
 });
 
+
+client.on('messageUpdate', (oldMessage, newMessage) => {
+  if(newMessage.channel.id == "712644431622438922"){
+    if(newMessage.content != "Bruh"){
+      newMessage.channel.send("Bruh");
+      newMessage.delete();
+    }
+  }
+});
+
 client.on('guildMemberAdd', member => {
   const channel = member.guild.channels.cache.find(ch => ch.name === 'spam-nuovi-arrivati'); // change this to the channel name you want to send the greeting to
   if (!channel) return;

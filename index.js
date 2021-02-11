@@ -57,6 +57,18 @@ client.once('ready', () => {
 });
 
 client.on('message', message => {
+  
+  if(message.channel.id == "715296368792567867"){
+    if(message.content.startsWith("m.") || message.content.startsWith("l.")){
+      let role = message.channel.guild.roles.cache.find(role => role.name == "Minorato mentale");
+      message.member.roles.add(role);
+      message.channel.send("Fra ma sei un Minorato mentale...\nNon potrai scrivere qui per la prossima ora");
+      setTimeout(function() {
+        message.member.roles.remove(role);
+      }, 3600000)
+    }
+  }
+
 	if(message.channel.id == "712644431622438922"){
     if(message.content != "Bruh"){
       message.channel.send("Bruh");
@@ -68,6 +80,8 @@ client.on('message', message => {
       message.channel.send("No tu");
     }
   }
+  
+
 });
 
 client.on('voiceStateUpdate', async (___, newState) => {

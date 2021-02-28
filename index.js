@@ -65,7 +65,7 @@ client.on('message', message => {
       message.channel.send("Fra ma sei un Minorato mentale...\nNon potrai scrivere qui per la prossima ora");
       setTimeout(function() {
         message.member.roles.remove(role);
-      }, 3600000)
+      }, 360000)
     }
   }
 

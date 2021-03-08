@@ -105,7 +105,6 @@ client.on('voiceStateUpdate', async (___, newState) => {
   }
 });
 
-
 client.on('messageUpdate', (oldMessage, newMessage) => {
   if(newMessage.channel.id == "712644431622438922"){
     if(newMessage.content != "Bruh"){
@@ -115,13 +114,7 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
   }
 });
 
-client.on('guildMemberAdd', member => {
-  const channel = member.guild.channels.cache.find(ch => ch.name === 'spam-nuovi-arrivati'); // change this to the channel name you want to send the greeting to
-  if (!channel) return;
-  channel.send(`Welcome ${member}!`);
-});
-
-function mementos() {
+function sendDailyMeme() {
 	let reddit = [
     "memes",
     "dankmemes"
@@ -132,17 +125,27 @@ function mementos() {
 
 	channel.startTyping();
 
-	randomPuppy(subreddit).then(async url => {
-			await channel.send({
-				files: [{
-					attachment: url,
-					name: 'meme.png'
-				}]
-			}).then(() => channel.stopTyping());
-	}).catch(err => console.error(err));
+	try {
+    const { body } = await snekfetch
+      .get(`https://www.reddit.com/r/${subreddit}.json?sort=top&t=week`)
+      .query({ limit: 800 });
+    const allowed = message.channel.nsfw ? body.data.children : body.data.children.filter(post => !post.data.over_18);
+    if (!allowed.length) return sg.channel.send('I meme golosi sono finiti, torna a casa ora');
+    const randomnumber = Math.floor(Math.random() * allowed.length)
+    const embed = new MessageEmbed();
+    embed
+    .setColor(0x00A2E8)
+    .setTitle(allowed[randomnumber].data.title)
+    .setImage(allowed[randomnumber].data.url)
+    .setFooter(`Postato da u/${allowed[randomnumber].data.author} su da r/${subreddit} (${allowed[randomnumber].data.ups} upvotes)`)
+    message.channel.send(embed)
+  } catch (err) {
+    return console.log(err);
+  }
+  message.channel.stopTyping();
 }
 
-let dailymeme = new Cron.CronJob('00 00 10 * * *', mementos);
+let dailymeme = new Cron.CronJob('00 00 10 * * *', sendDailyMeme);
 dailymeme.start();
 
 client.login(process.env.token);

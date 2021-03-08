@@ -116,7 +116,6 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
 
 async function sendDailyMeme() {
 	let reddit = [
-    "memes",
     "dankmemes"
 	]
 

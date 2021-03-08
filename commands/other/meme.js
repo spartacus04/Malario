@@ -17,7 +17,6 @@ module.exports = class RandomNumberCommand extends Command {
   async run(message) {
     let reddit = [
         "ShitPostCrusaders",
-        "memes",
         "dankmemes"
     ]
 

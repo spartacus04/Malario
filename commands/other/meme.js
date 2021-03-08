@@ -32,6 +32,7 @@ module.exports = class RandomNumberCommand extends Command {
       if (!allowed.length) return sg.channel.send('I meme golosi sono finiti, torna a casa ora');
       const randomnumber = Math.floor(Math.random() * allowed.length)
       const embed = new MessageEmbed();
+      console.log(`Postato da u/${allowed[randomnumber].data.author} su da r/${subreddit} (${allowed[randomnumber].data.ups} upvotes)`);
       embed
       .setColor(0x00A2E8)
       .setTitle(allowed[randomnumber].data.title)

@@ -1,9 +1,10 @@
 /* eslint-disable no-empty */
 const { CommandoClient } = require('./discord.js-commando/src');
-const { Structures, Message } = require('discord.js');
+const { Structures } = require('discord.js');
 const path = require('path');
 const Cron = require("cron");
-const randomPuppy = require('random-puppy');
+const fetch = require('node-fetch');
+
 
 Structures.extend('Guild', function(Guild) {
   class MusicGuild extends Guild {
@@ -116,28 +117,35 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
 
 async function sendDailyMeme() {
 	let reddit = [
-    "dankmemes"
+    "dankmemes",
+    "memes"
 	]
 
 	let channel = client.channels.cache.get(`711647597411958827`);
 	let subreddit = reddit[Math.floor(Math.random() * reddit.length)];
 
-	channel.startTyping();
+	let subreddit = reddit[Math.floor(Math.random() * reddit.length)];
 
-	try {
-    const { body } = await snekfetch
-      .get(`https://www.reddit.com/r/${subreddit}.json?sort=top&t=week`)
-      .query({ limit: 800 });
-    const allowed = message.channel.nsfw ? body.data.children : body.data.children.filter(post => !post.data.over_18);
-    if (!allowed.length) return sg.channel.send('I meme golosi sono finiti, torna a casa ora');
-    const randomnumber = Math.floor(Math.random() * allowed.length)
-    const embed = new MessageEmbed();
-    embed
-    .setColor(0x00A2E8)
-    .setTitle(allowed[randomnumber].data.title)
-    .setImage(allowed[randomnumber].data.url)
-    .setFooter(`Postato da u/${allowed[randomnumber].data.author} su da r/${subreddit} (${allowed[randomnumber].data.ups} upvotes)`)
-    message.channel.send(embed)
+  message.channel.startTyping();
+  try {
+    var url = new URL(`https://www.reddit.com/r/${subreddit}.json?sort=top&t=week`),
+      params = {limit: 800}
+    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+    fetch(url)
+    .then(body => body.json())
+    .then((body) => {
+      const allowed = message.channel.nsfw ? body.data.children : body.data.children.filter(post => !post.data.over_18);
+      if (!allowed.length) return sg.channel.send('I meme golosi sono finiti, torna a casa ora');
+      const randomnumber = Math.floor(Math.random() * allowed.length)
+      const embed = new MessageEmbed();
+      embed
+      .setColor(0x00A2E8)
+      .setTitle(allowed[randomnumber].data.title)
+      .setImage(allowed[randomnumber].data.url)
+      .setFooter(`Postato da u/${allowed[randomnumber].data.author} su da r/${subreddit} (${allowed[randomnumber].data.ups} upvotes)`)
+      message.channel.send(embed)
+    }).catch(function (err){ console.log(err)});
+    
   } catch (err) {
     return console.log(err);
   }

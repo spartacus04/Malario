@@ -39,7 +39,7 @@ module.exports = class RandomNumberCommand extends Command {
         .setColor(0x00A2E8)
         .setTitle(allowed[randomnumber].data.title)
         .setImage(allowed[randomnumber].data.url)
-        .setFooter(`Postato da u/${allowed[randomnumber].data.author} su da r/${subreddit} (${allowed[randomnumber].data.ups} upvotes)`)
+        .setFooter(`Postato da u/${allowed[randomnumber].data.author} su r/${subreddit} (${allowed[randomnumber].data.ups} upvotes)`)
         message.channel.send(embed)
       }).catch(function (err){ console.log(err)});
       

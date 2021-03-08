@@ -124,8 +124,6 @@ async function sendDailyMeme() {
 	let channel = client.channels.cache.get(`711647597411958827`);
 	let subreddit = reddit[Math.floor(Math.random() * reddit.length)];
 
-	let subreddit = reddit[Math.floor(Math.random() * reddit.length)];
-
   message.channel.startTyping();
   try {
     var url = new URL(`https://www.reddit.com/r/${subreddit}.json?sort=top&t=week`),
